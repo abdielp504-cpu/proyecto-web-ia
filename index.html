@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador Rick and Morty</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <header>
+    <h1>Explorador de Rick and Morty</h1>
+    <p>Busca personajes, filtra resultados y guarda tus favoritos.</p>
+  </header>
+
+  <main>
+    <!-- Buscador y filtros -->
+    <section id="controles">
+      <input type="text" id="buscador" placeholder="Buscar personaje por nombre...">
+
+      <select id="filtro-estado">
+        <option value="">Todos los estados</option>
+        <option value="alive">Vivo</option>
+        <option value="dead">Muerto</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <select id="filtro-genero">
+        <option value="">Todos los géneros</option>
+        <option value="female">Femenino</option>
+        <option value="male">Masculino</option>
+        <option value="genderless">Sin género</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <select id="filtro-especie">
+        <option value="">Todas las especies</option>
+        <option value="human">Humano</option>
+        <option value="alien">Alien</option>
+      </select>
+    </section>
+
+    <!-- Mensajes (sin resultados, errores, cargando) -->
+    <p id="mensaje" class="oculto"></p>
+
+    <!-- Resultados de la API -->
+    <section>
+      <h2>Personajes</h2>
+      <div id="resultados" class="contenedor-tarjetas"></div>
+    </section>
+
+    <!-- Favoritos -->
+    <section>
+      <h2>⭐ Mis favoritos</h2>
+      <div id="favoritos" class="contenedor-tarjetas"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto escolar · Datos de <a href="https://rickandmortyapi.com" target="_blank">Rick and Morty API</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
