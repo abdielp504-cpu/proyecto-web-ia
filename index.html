@@ -37,16 +37,32 @@
         <option value="">Todas las especies</option>
         <option value="human">Humano</option>
         <option value="alien">Alien</option>
+        <option value="humanoid">Humanoide</option>
+        <option value="robot">Robot</option>
+        <option value="animal">Animal</option>
+        <option value="mythological">Criatura mitológica</option>
+        <option value="cronenberg">Cronenberg</option>
+        <option value="disease">Enfermedad</option>
+        <option value="unknown">Desconocido</option>
       </select>
+
+       <button id="btn-limpiar" type="button">Limpiar filtros</button>
     </section>
 
     <!-- Mensajes (sin resultados, errores, cargando) -->
     <p id="mensaje" class="oculto"></p>
 
     <!-- Resultados de la API -->
-    <section>
+       <section>
       <h2>Personajes</h2>
+      <p id="contador"></p>
       <div id="resultados" class="contenedor-tarjetas"></div>
+
+      <div id="paginacion" class="oculto">
+        <button id="btn-anterior" type="button">← Anterior</button>
+        <span id="info-pagina"></span>
+        <button id="btn-siguiente" type="button">Siguiente →</button>
+      </div>
     </section>
 
     <!-- Favoritos -->
