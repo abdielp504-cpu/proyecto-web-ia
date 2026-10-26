@@ -11,12 +11,66 @@ const paginacion = document.getElementById("paginacion");
 const btnAnterior = document.getElementById("btn-anterior");
 const btnSiguiente = document.getElementById("btn-siguiente");
 const infoPagina = document.getElementById("info-pagina");
+const contenedorFavoritos = document.getElementById("favoritos");
 
 const API_URL = "https://rickandmortyapi.com/api/character";
 
 // ---------- Estado de la paginación ----------
 let paginaActual = 1;
 let totalPaginas = 1;
+// ---------- Favoritos (localStorage) ----------
+function obtenerFavoritos() {
+  try {
+    return JSON.parse(localStorage.getItem("favoritos")) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function guardarFavoritos(lista) {
+  localStorage.setItem("favoritos", JSON.stringify(lista));
+}
+
+function esFavorito(id) {
+  return obtenerFavoritos().some((p) => p.id === id);
+}
+
+function alternarFavorito(personaje) {
+  let favoritos = obtenerFavoritos();
+
+  if (esFavorito(personaje.id)) {
+    favoritos = favoritos.filter((p) => p.id !== personaje.id);
+  } else {
+    favoritos.push(personaje);
+  }
+
+  guardarFavoritos(favoritos);
+  mostrarFavoritos();
+  actualizarBotonesFavorito();
+}
+
+function mostrarFavoritos() {
+  const favoritos = obtenerFavoritos();
+  contenedorFavoritos.innerHTML = "";
+
+  if (favoritos.length === 0) {
+    contenedorFavoritos.innerHTML =
+      "<p>Aún no tienes favoritos. Pulsa ☆ en un personaje para guardarlo.</p>";
+    return;
+  }
+
+  favoritos.forEach((personaje) => {
+    contenedorFavoritos.appendChild(crearTarjeta(personaje));
+  });
+}
+
+// Actualiza el texto de todos los botones según si el personaje es favorito
+function actualizarBotonesFavorito() {
+  document.querySelectorAll(".tarjeta button[data-id]").forEach((boton) => {
+    const id = Number(boton.dataset.id);
+    boton.textContent = esFavorito(id) ? "★ Quitar de favoritos" : "☆ Agregar a favoritos";
+  });
+}
 
 // ---------- Mensajes ----------
 function mostrarMensaje(texto) {
@@ -89,25 +143,35 @@ function buscarDesdeInicio() {
 }
 
 // ---------- Mostrar tarjetas ----------
+function crearTarjeta(personaje) {
+  const tarjeta = document.createElement("article");
+  tarjeta.classList.add("tarjeta");
+
+  tarjeta.innerHTML = `
+    <img src="${personaje.image}" alt="${personaje.name}">
+    <div class="tarjeta-info">
+      <h3>${personaje.name}</h3>
+      <p>Estado: ${personaje.status}</p>
+      <p>Especie: ${personaje.species}</p>
+      <p>Género: ${personaje.gender}</p>
+      <p>Origen: ${personaje.origin.name}</p>
+      <button type="button" data-id="${personaje.id}">
+        ${esFavorito(personaje.id) ? "★ Quitar de favoritos" : "☆ Agregar a favoritos"}
+      </button>
+    </div>
+  `;
+
+  tarjeta.querySelector("button").addEventListener("click", () => {
+    alternarFavorito(personaje);
+  });
+
+  return tarjeta;
+}
+
 function mostrarPersonajes(lista) {
   resultados.innerHTML = "";
-
   lista.forEach((personaje) => {
-    const tarjeta = document.createElement("article");
-    tarjeta.classList.add("tarjeta");
-
-    tarjeta.innerHTML = `
-      <img src="${personaje.image}" alt="${personaje.name}">
-      <div class="tarjeta-info">
-        <h3>${personaje.name}</h3>
-        <p>Estado: ${personaje.status}</p>
-        <p>Especie: ${personaje.species}</p>
-        <p>Género: ${personaje.gender}</p>
-        <p>Origen: ${personaje.origin.name}</p>
-      </div>
-    `;
-
-    resultados.appendChild(tarjeta);
+    resultados.appendChild(crearTarjeta(personaje));
   });
 }
 
@@ -151,4 +215,5 @@ btnSiguiente.addEventListener("click", () => {
 });
 
 // Carga inicial al abrir la página
+mostrarFavoritos();
 cargarPersonajes();
