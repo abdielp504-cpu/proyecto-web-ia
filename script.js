@@ -73,13 +73,24 @@ function actualizarBotonesFavorito() {
 }
 
 // ---------- Mensajes ----------
-function mostrarMensaje(texto) {
+// tipo: "info" (cargando / sin resultados) o "error" (falló la API)
+function mostrarMensaje(texto, tipo = "info") {
   mensaje.textContent = texto;
-  mensaje.classList.remove("oculto");
+  mensaje.className = tipo; // quita "oculto" y aplica el estilo del tipo
+
+  if (tipo === "error") {
+    const btnReintentar = document.createElement("button");
+    btnReintentar.type = "button";
+    btnReintentar.id = "btn-reintentar";
+    btnReintentar.textContent = "Reintentar";
+    btnReintentar.addEventListener("click", cargarPersonajes);
+    mensaje.appendChild(document.createElement("br"));
+    mensaje.appendChild(btnReintentar);
+  }
 }
 
 function ocultarMensaje() {
-  mensaje.classList.add("oculto");
+  mensaje.className = "oculto";
 }
 
 // ---------- Paginación ----------
@@ -132,7 +143,7 @@ async function cargarPersonajes() {
     console.error(error);
     totalPaginas = 1;
     actualizarPaginacion();
-    mostrarMensaje("Falló la consulta a la API. Revisa tu conexión e intenta de nuevo.");
+    mostrarMensaje("Falló la consulta a la API. Revisa tu conexión e intenta de nuevo.", "error");
   }
 }
 
