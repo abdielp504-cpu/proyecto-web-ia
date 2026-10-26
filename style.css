@@ -212,6 +212,41 @@ footer a {
   color: #9fb0c3;
 }
 
+/* ---------- Modo claro ---------- */
+body.claro {
+  --fondo: #f3f6fa;
+  --tarjeta: #ffffff;
+  --texto: #1b2430;
+  --acento: #4d8a1a;
+  --acento-oscuro: #3a6a12;
+  --borde: #d3dbe5;
+}
+
+body.claro .tarjeta button,
+body.claro #btn-limpiar,
+body.claro #paginacion button,
+body.claro #btn-reintentar {
+  color: #fff;
+}
+
+body.claro #mensaje.info {
+  background-color: #e6f0ff;
+}
+
+body.claro #mensaje.error {
+  background-color: #ffe8e8;
+}
+
+#btn-tema {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--acento);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--acento);
+  font-weight: bold;
+  cursor: pointer;
+}
 /* ---------- Responsivo (celulares) ---------- */
 @media (max-width: 600px) {
   .contenedor-tarjetas {
