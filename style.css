@@ -185,6 +185,13 @@ footer a {
   margin-bottom: 1rem;
   color: var(--acento);
 }
+
+/* ---------- Favoritos ---------- */
+#favoritos > p {
+  grid-column: 1 / -1;
+  color: #9fb0c3;
+}
+
 /* ---------- Responsivo (celulares) ---------- */
 @media (max-width: 600px) {
   .contenedor-tarjetas {
