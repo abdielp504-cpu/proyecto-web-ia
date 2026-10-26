@@ -224,7 +224,35 @@ btnSiguiente.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 });
+// ---------- Modo oscuro / claro ----------
+const btnTema = document.getElementById("btn-tema");
 
+function aplicarTema(tema) {
+  if (tema === "claro") {
+    document.body.classList.add("claro");
+    btnTema.textContent = "🌙 Modo oscuro";
+  } else {
+    document.body.classList.remove("claro");
+    btnTema.textContent = "☀️ Modo claro";
+  }
+}
+
+function cargarTemaGuardado() {
+  try {
+    return localStorage.getItem("tema") || "oscuro";
+  } catch (error) {
+    return "oscuro";
+  }
+}
+
+btnTema.addEventListener("click", () => {
+  const nuevoTema = document.body.classList.contains("claro") ? "oscuro" : "claro";
+  aplicarTema(nuevoTema);
+  localStorage.setItem("tema", nuevoTema);
+});
+
+// Al abrir la página, aplica el tema que se guardó la última vez
+aplicarTema(cargarTemaGuardado());
 // Carga inicial al abrir la página
 mostrarFavoritos();
 cargarPersonajes();
