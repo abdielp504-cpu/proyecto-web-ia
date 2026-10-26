@@ -146,6 +146,45 @@ footer a {
   color: var(--acento);
 }
 
+/* ---------- Botones de controles y paginación ---------- */
+#btn-limpiar,
+#paginacion button {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--acento);
+  color: #111;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#btn-limpiar:hover,
+#paginacion button:hover:not(:disabled) {
+  background-color: var(--acento-oscuro);
+}
+
+#paginacion button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#paginacion.oculto {
+  display: none;
+}
+
+#contador {
+  margin-bottom: 1rem;
+  color: var(--acento);
+}
 /* ---------- Responsivo (celulares) ---------- */
 @media (max-width: 600px) {
   .contenedor-tarjetas {
