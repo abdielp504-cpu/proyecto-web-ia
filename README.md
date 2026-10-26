@@ -16,4 +16,5 @@ Le solicite a la IA que revisara los archivos con codigo hechos previamente, que
 Error de la IA:
 En este proyecto le pedi a la IA que lo manejara por fases, para que yo mismo entienda lo que se esta haciendo, y se cometan los mas minimos errores, en este caso se estaba saltando una etapa, que era la comprobacion de lo nuevo que habiamos agregado.
 
-
+Modificacion al codigo:
+Se incluyo el boton agregar a favoritos, las modificaciones fueron hechos en los archivos script.js y style.css, incluyo que la seccion y el titulo de este boton sean correctos visualmente, se comprobo que los personajes se agreguen correctamente y que al recargar la pagina, los favoritos aun queden guaradados.
