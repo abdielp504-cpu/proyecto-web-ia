@@ -1,8 +1,8 @@
 # Tarea3_Unidad2_AplicacionesWeb
 Explorador de personajes de Rick y Morty
 Alumno: Abdiel Farid Pech Tec abdielp504-cpu
-https://abdielp504-cpu.github.io/proyecto-web-ia/
-
+**https://abdielp504-cpu.github.io/proyecto-web-ia/
+**https://github.com/abdielp504-cpu/proyecto-web-ia.git
 ## Descripción
 Aplicación web que consulta la [Rick and Morty API](https://rickandmortyapi.com) con `fetch()` y muestra personajes con su imagen y datos (estado, especie, género y origen). Permite buscar por nombre, filtrar, paginar los resultados, guardar favoritos y cambiar entre modo oscuro y claro.
 ## Instrucciones de uso
